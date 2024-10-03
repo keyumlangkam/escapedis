@@ -15,10 +15,8 @@ export async function loader(){
         }
     
         if(res.data.tokenvalue !== 'verified'){
-          console.log(res.data.message)
           return redirect('/')
-        } 
-        return null
+        } else return null   
     } else return redirect('/')
   }catch(err){
 
