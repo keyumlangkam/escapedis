@@ -3,10 +3,14 @@ import NavBar from '../components/navbar'
 import getCouponData from '../utils/getCouponData'
 import { Trash2 } from 'lucide-react'
 import deleteCouponData from '../utils/deleteCouponData'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 export default function AdminId(){
   const navigate= useNavigate()
+  const d = useLoaderData()
+  if(d !== 'authenticated'){
+    navigate('/')
+  }
   const {email,id} = useParams();
   const [searchCode , setSearchCode] = useState()
   const {data} = useQuery({

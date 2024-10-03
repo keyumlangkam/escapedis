@@ -2,10 +2,17 @@ import NavBar from "../components/navbar";
 import { useMutation } from "@tanstack/react-query";
 import customerIdRouteApiCall from "../utils/customerIdRouteApiCall";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import firstImage from '../../public/Firststep.png'
+import secondImage from '../../public/Secondstep.png'
+import thirdImage from '../../public/Thirdstep.png'
 export default function AddPageId(){
-  const [showHelp, setShowHelp] = useState(false)
+
+  const d = useLoaderData()
+  if(d !== 'authenticated'){
+    navigate('/')
+  }
   const [id,setId] = useState('')
   const {email} = useParams()
   const navigate = useNavigate()
@@ -50,7 +57,7 @@ export default function AddPageId(){
           </ul>  
         </div>
         <div className="">
-          <img src="../../public/Firststep.png" alt="" className="object-scaledown"/>
+          <img src={firstImage} alt="first image" className="object-scaledown"  />
         </div>  
       </div>
       <div className="flex-col flex gap-5 items-center">
@@ -67,7 +74,7 @@ export default function AddPageId(){
           </ul>  
         </div>
         <div className="">
-          <img src="../../public/Secondstep.png" alt="" className="object-contain"/>
+          <img src={secondImage} alt="second image" className="object-contain"/>
         </div>  
       </div>
       <div className="flex-col flex gap-5 items-center">
@@ -84,7 +91,7 @@ export default function AddPageId(){
           </ul>  
         </div>
         <div className="">
-          <img src="../../public/Thirdstep.png" alt="" className="object-scaledown"/>
+          <img src={thirdImage} alt="third image" className="object-scaledown"/>
         </div>  
       </div>
       <div className="flex-col flex gap-5 items-center">

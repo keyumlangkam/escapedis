@@ -1,11 +1,15 @@
 import { useState } from "react";
 import {useMutation} from '@tanstack/react-query'
 import singupRouteApiCall from "../utils/signupRouteApiCall";
-import {useNavigate} from "react-router-dom"
+import {useLoaderData,useNavigate} from "react-router-dom"
 import NavBar from "../components/navbar";
 
 export default function Signup(){
 
+  const data = useLoaderData()
+  if(data){
+    navigate('/')
+  }
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

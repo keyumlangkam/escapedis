@@ -1,5 +1,4 @@
 import axios from "axios";
-import { redirect } from "react-router-dom";
 
 export async function loader(){
   try{
@@ -10,19 +9,12 @@ export async function loader(){
         headers:{
          'Authorization': 'Bearer ' + token 
         }})
-        if(res.statusText !== 'OK'){
-          return redirect('/')
-        }
-    
-        if(res.data.tokenvalue !== 'verified'){
-          return redirect('/')
-        }
         if(res.data.tokenvalue === 'verified'){
-          return null
-        } else return null   
-    } else return redirect('/')
-  }catch(err){
-
+          return 'authenticated'
+        } else return 'not authenticated'
+    } else return 'not authenticated'
+  }catch(err){ 
+    console.log(err)
   }
  
   

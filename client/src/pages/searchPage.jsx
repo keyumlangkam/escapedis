@@ -3,10 +3,15 @@ import NavBar from '../components/navbar'
 import searchCouponData from '../utils/searchCouponData'
 import { Trash2 } from 'lucide-react'
 import deleteCouponData from '../utils/deleteCouponData'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams,useLoaderData } from 'react-router-dom'
 
 
 export default function SearchPage(){
+  const navigate = useNavigate()
+  const d = useLoaderData()
+  if(d !== 'authenticated'){
+    navigate('/')
+  }
   const {search} = useParams();
   const {data} = useQuery({
     queryFn: ()=>searchCouponData(search),

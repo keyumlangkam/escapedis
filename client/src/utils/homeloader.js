@@ -12,14 +12,15 @@ export async function loader(){
         }})
        if(res.data.tokenvalue !== 'verified'){
         localStorage.clear()
-        return null
-        } else{ 
+        return 'not authenticated'
+        } 
+        
+        if(res.data.tokenvalue === 'verified'){ 
           const email = localStorage.getItem('email')
           const id = localStorage.getItem('id')
-            console.log(res.data.message)
             return redirect(`/admin/${email}/${id}`)
         } 
-    } else return null
+    } else return 'not authenticated'
   }catch(err){
     console.log(err)
     throw new Error

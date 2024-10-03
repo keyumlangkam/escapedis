@@ -1,10 +1,15 @@
 import { useState } from "react"
 import customerIdRouteApiCall from "../utils/customerIdRouteApiCall"
-import { useParams } from "react-router-dom"
+import { useLoaderData,useNavigate,useParams } from "react-router-dom"
 import customerDiscount from "../utils/customerDiscount"
 import NavBar from "../components/navbar"
 
 export default function Settings(){
+  const navigate = useNavigate()
+  const d = useLoaderData()
+  if(d !== 'authenticated'){
+    navigate('/')
+  }
   const {email} = useParams()
   const [id, setId] = useState()
   const [discount, setDiscount] = useState()
