@@ -16,6 +16,9 @@ export async function loader(){
     
         if(res.data.tokenvalue !== 'verified'){
           return redirect('/')
+        }
+        if(res.data.tokenvalue === 'verified'){
+          return null
         } else return null   
     } else return redirect('/')
   }catch(err){
